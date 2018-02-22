@@ -8,10 +8,11 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
 
 app.post('/signup', function(req, res) {
+    console.log("Request body to signup =====>", req.body);
     var email = req.body.email;
     var password = req.body.password;
     var emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    if (!email || !password || !emailRegex.test()) {
+    if (!email || !password || !emailRegex.test(email)) {
         return res.send('Insufficient information was provided.');
     }
     var passHash = md5(password);
