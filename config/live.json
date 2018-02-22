@@ -1,0 +1,11 @@
+{
+    "PORT" : 3000,
+    "databaseSettings" :{
+        "database" : "mongodb://localhost:27017/mail-tracker"
+    },
+    "apiLink" : "",
+    "mongoCollections" : {
+        "mails" : "tb_mails",
+        "users" : "tb_users"
+    }
+}
