@@ -2,7 +2,7 @@ var md5        = require('MD5');
 var config     = require('config');
 var app        = require('express')();
 var bodyParser = require('body-parser');
-var MongoClient = require('mongo');
+var MongoClient = require('mongodb').MongoClient;
 
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
