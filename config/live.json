@@ -3,7 +3,7 @@
     "databaseSettings" :{
         "database" : "mongodb://localhost:27017/mail-tracker"
     },
-    "apiLink" : "",
+    "apiLink" : "http://35.202.70.68:3000/",
     "mongoCollections" : {
         "mails" : "tb_mails",
         "users" : "tb_users"
