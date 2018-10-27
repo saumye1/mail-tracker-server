@@ -69,9 +69,20 @@ app.post('/login', function(req, res) {
 })
 
 app.get('/:mailToken', function(req, res) {
+  var ipAddress = '';
+  if (req.connection && req.connection.remoteAddress) {
+	ipAddress = req.connection.remoteAddress;
+  }
+  if (req.headers && req.headers['x-forwarded-for']) {
+	ipAddress = req.headers['x-forwarded-for'];
+  }
   var reqParams = req.params;
   var token = reqParams.mailToken;
-  db.collection(config.get('mongoCollections.mails')).update({mailToken : token}, {$inc : {count : 1} }, function(err, result) {
+  var updateObj = {
+	$inc : {count : 1},
+	$set : {ip : ipAddress}
+  }
+  db.collection(config.get('mongoCollections.mails')).update({mailToken : token}, updateObj, function(err, result) {
     if (err) {
       console.error('Error occurred while updating data');
     } else {
